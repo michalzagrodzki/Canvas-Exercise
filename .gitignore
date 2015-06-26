@@ -1,0 +1,5 @@
+# Ignore working files of WebStorm
+*.iml
+.idea/
+*.ipr
+*.iws
