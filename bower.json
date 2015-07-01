@@ -1,0 +1,9 @@
+{
+  "name": "canvas-exercise",
+  "description": "Short exercise in Canvas",
+  "version": "0.0.0",
+  "homepage": "https://github.com/michalzagrodzki/Canvas-Exercise",
+  "private": true,
+  "dependencies": {
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "name": "canvas-exercise",
+  "description": "Short exercise in Canvas",
+  "repository": "https://github.com/michalzagrodzki/Canvas-Exercise",
+  "devDependencies": {
+    "http-server": "^0.6.1"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 8000"
+
+  }
+}

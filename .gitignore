@@ -1,5 +1,8 @@
-# Ignore working files of WebStorm
-*.iml
-.idea/
-*.ipr
-*.iws
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.idea
+.DS_Store
+angular-phonecat-snapshots
+bower_components/
