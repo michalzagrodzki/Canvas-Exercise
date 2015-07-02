@@ -1,8 +1,64 @@
+// setting canvas element
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
+var lines = canvas.getContext('2d');
 
-// do cool things with the context
-context.beginPath();
-context.rect(10, 10, 250, 250);
-context.fillStyle = "rgb(255, 204, 153)";
-context.fill();
+// properties of visible elements
+var horizontalTileNumber = 3;
+var verticalTileNumber = 20;
+var gridLineColor = 'rgb(205, 205, 205)';
+var gridLineWidth = 2;
+var tileChangeSpeed = 1500;
+
+
+// function for drawing grid of lines - goes through horizontal lines and then through vertical lines
+// 1. loop through all places on display
+// 2. draw line with specified color
+gridHorizontal = function(){
+  for (y = 0; y < verticalTileNumber; y++) {
+    lines.beginPath();
+    lines.moveTo(0, (y * canvas.height / verticalTileNumber));
+    lines.lineTo(canvas.width, (y * canvas.height / verticalTileNumber));
+    lines.lineWidth = gridLineWidth;
+    lines.strokeStyle = gridLineColor;
+    lines.stroke();
+  }
+};
+
+gridVertical = function(){
+  for (x = 0; x < horizontalTileNumber; x++) {
+    lines.beginPath();
+    lines.moveTo((x * canvas.width / horizontalTileNumber), 0 );
+    lines.lineTo((x * canvas.width/ horizontalTileNumber), canvas.height);
+    lines.lineWidth = gridLineWidth;
+    lines.strokeStyle = gridLineColor;
+    lines.stroke();
+  }
+};
+
+// function for drawing rectangle with random color
+// 1. loop through all places on display
+// 2. set random color and attach it to variable color
+// 3. draw rectangle, with height and width specified from global properties
+repeat = function(){
+
+  for(x = 0; x < horizontalTileNumber; x++)for (y = 0; y < verticalTileNumber; y++) {
+
+    // function for setting color
+    function randomColor() {
+        return Math.floor((Math.random() * 220));
+    }
+
+    // setting variable for color
+    var color = "rgb(" + randomColor() + ", " + randomColor() + ", " + randomColor() + ")";
+
+    // draw rectangle
+    context.fillStyle = color;
+    context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
+  }
+};
+
+// launching functions
+window.setInterval(repeat, tileChangeSpeed);
+window.setInterval(gridHorizontal, tileChangeSpeed);
+window.setInterval(gridVertical, tileChangeSpeed);
