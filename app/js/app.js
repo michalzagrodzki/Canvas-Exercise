@@ -46,7 +46,7 @@ repeat = function(){
 
     // function for setting color
     function randomColor() {
-        return Math.floor((Math.random() * 220));
+        return Math.floor((Math.random() * 175) + 1);
     }
 
     // setting variable for color
