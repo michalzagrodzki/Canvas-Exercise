@@ -49,9 +49,9 @@ drawTilePattern = function(){
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // function for setting hue
-  function randomHue() {
-    return Math.floor((Math.random() * 2) + 5);
-  }
+  randomHue = function () {
+    return Math.floor((Math.random() + 200 ));
+  };
 
   for(x = 0; x < horizontalTileNumber; x++)for (y = 0; y < verticalTileNumber; y++) {
 
