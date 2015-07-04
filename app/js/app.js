@@ -37,13 +37,13 @@ gridVertical = function(){
 };
 
 // function for drawing rectangle with random color
-// 1. loop through all places on display
-// 2. set random color and attach it to variable color
-// 3. draw rectangle, with height and width specified from global properties
-repeat = function(){
-
+// 1. clear canvas from previous state
+// 2. loop through all places on display
+// 3. set random color and attach it to variable color
+// 4. draw rectangle, with height and width specified from global properties
+drawTilePattern = function(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
   for(x = 0; x < horizontalTileNumber; x++)for (y = 0; y < verticalTileNumber; y++) {
-
     // function for setting color
     function randomColor() {
         return Math.floor((Math.random() * 175) + 1);
@@ -58,7 +58,7 @@ repeat = function(){
   }
 };
 
-// launching functions
-window.setInterval(repeat, tileChangeSpeed);
+// executing functions
+window.setInterval(drawTilePattern, tileChangeSpeed);
 window.setInterval(gridHorizontal, tileChangeSpeed);
 window.setInterval(gridVertical, tileChangeSpeed);
