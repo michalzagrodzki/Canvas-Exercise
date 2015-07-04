@@ -4,11 +4,14 @@ var context = canvas.getContext('2d');
 var lines = canvas.getContext('2d');
 
 // properties of visible elements
+// properties related to function drawTilePattern
 var horizontalTileNumber = 3;
 var verticalTileNumber = 20;
+var tileChangeSpeed = 1500;
+
+// properties related to functions gridHorizontal and gridVertical
 var gridLineColor = 'rgb(205, 205, 205)';
 var gridLineWidth = 2;
-var tileChangeSpeed = 1500;
 
 
 // function for drawing grid of lines - goes through horizontal lines and then through vertical lines
