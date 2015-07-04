@@ -7,7 +7,7 @@ var lines = canvas.getContext('2d');
 // properties related to function drawTilePattern
 var horizontalTileNumber = 3;
 var verticalTileNumber = 20;
-var tileChangeSpeed = 1500;
+var tileChangeSpeed = 100;
 
 // properties related to functions gridHorizontal and gridVertical
 var gridLineColor = 'rgb(205, 205, 205)';
@@ -41,19 +41,32 @@ gridVertical = function(){
 
 // function for drawing rectangle with random color
 // 1. clear canvas from previous state
+// 2. set random hue for tiles
 // 2. loop through all places on display
-// 3. set random color and attach it to variable color
+// 3. set random saturation and light and attach to variable color
 // 4. draw rectangle, with height and width specified from global properties
 drawTilePattern = function(){
   context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // function for setting hue
+  function randomHue() {
+    return Math.floor((Math.random() * 2) + 5);
+  }
+
   for(x = 0; x < horizontalTileNumber; x++)for (y = 0; y < verticalTileNumber; y++) {
-    // function for setting color
-    function randomColor() {
-      return Math.floor((Math.random() * 175) + 1);
+
+    // function for setting saturation
+    function randomSaturation() {
+      return Math.floor((Math.random() * 20) + 50);
+    }
+
+    // function for setting lightness
+    function randomLight() {
+      return Math.floor((Math.random() * 50) + 20);
     }
 
     // setting variable for color
-    var color = "rgb(" + randomColor() + ", " + randomColor() + ", " + randomColor() + ")";
+    var color = "hsl(" + randomHue() + ", " + randomSaturation() + "%, " + randomLight() + "% )";
 
     // draw rectangle
     context.fillStyle = color;
