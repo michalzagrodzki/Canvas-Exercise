@@ -16,9 +16,46 @@ body {
 .link-button{
   display: block;
   width: 500px;
-  border: 1px solid #171717;
+  border: 1px solid #858585;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
   text-align: center;
+  border-radius: 5px;
+}
+
+.link-button p{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #acacac;
+  font-family: "Capsuula", Arial, sans-serif;
+  font-style: normal;
+  font-size: 28px;
+  letter-spacing: 5px;
+}
+
+h1{
+  margin-top: 200px;
+  margin-bottom: 10px;
+  color: #acacac;
+  text-align: center;
+  font-family: "Lato", Arial, sans-serif;
+  font-style: normal;
+  font-size: 60px;
+}
+
+h2{
+  margin-top: -10px;
+  margin-bottom: 200px;
+  color: #acacac;
+  text-align: center;
+  font-family: "Lato", Arial, sans-serif;
+  font-style: oblique;
+  font-size: 40px;
+}
+
+a{
+  text-decoration: none;
 }
