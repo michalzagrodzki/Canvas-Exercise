@@ -51,6 +51,7 @@ var randomHue = function(){
 // 3. in each loop set random saturation and light for one tile - this creates variance
 // 4. draw rectangle, with height and width specified from global properties
 drawTilePattern = function(){
+  // clear canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // variable for parsing hue
