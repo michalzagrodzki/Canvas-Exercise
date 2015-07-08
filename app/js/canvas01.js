@@ -13,6 +13,7 @@ var tileChangeSpeed = 1500;
 var gridLineColor = 'rgb(205, 205, 205)';
 var gridLineWidth = 2;
 
+// ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
 // function for drawing grid of lines - goes through horizontal lines and then through vertical lines
 // 1. loop through all places on display
