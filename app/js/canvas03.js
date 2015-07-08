@@ -9,6 +9,17 @@ var horizontalTileNumber = 3;
 var verticalTileNumber = 20;
 var tileChangeSpeed = 100;
 
+// properties related to variance in lightness and saturation (values resemble percents - %)
+// scatter controls how big is the difference between generated values (between 0 - 100)
+// shift controls level of values (between 0 - 100)
+// example: for light and muted colors use: 5 / 15 / 10 / 60
+// example: for high contrast shades use: 5 / 20 / 60 / 30
+var saturationScatter = 5;
+var saturationShift = 15;
+
+var lightnessScatter = 10;
+var lightnessShift = 60;
+
 // properties related to functions gridHorizontal and gridVertical
 var gridLineColor = 'rgb(205, 205, 205)';
 var gridLineWidth = 1;
@@ -81,12 +92,12 @@ drawTilePattern = function(){
 
     // function for setting saturation
     randomSaturation = function () {
-      return Math.floor((Math.random() * 20) + 20);
+      return Math.floor((Math.random() * saturationScatter) + saturationShift);
     };
 
     // function for setting lightness
     randomLight = function () {
-      return Math.floor((Math.random() * 50) + 20);
+      return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
     };
 
     // setting variable for color
