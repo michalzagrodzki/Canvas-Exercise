@@ -4,7 +4,6 @@ var context = canvas.getContext('2d');
 var lines = canvas.getContext('2d');
 
 // function for drawing hexagon with color
-
 drawHexagon = function() {
   // clear canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -15,6 +14,13 @@ drawHexagon = function() {
   };
 
   // function for drawing hexagon
+  // 1. check if figure has more than 2 sides
+  // 2. set value 'a' as a length of side in polygon
+  // 3. save existing state
+  // 4. change position of canvas coordination
+  // 5. move drawing start point to side of polygon
+  // 6. in loop draw number of sides
+  // 7. close path and restore canvas coordination state
   function polygon( ctx, x, y, radius, sides ) {
     if ( sides < 3 ) return;
     var a = ( Math.PI * 2 )/sides;
