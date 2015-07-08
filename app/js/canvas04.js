@@ -3,6 +3,8 @@ var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
 var lines = canvas.getContext('2d');
 
+// ////////////////////// functions related to drawing elements on screen /////////////////////// //
+
 // function for drawing hexagon with color
 drawHexagon = function() {
   // clear canvas
