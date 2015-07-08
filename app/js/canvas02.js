@@ -24,6 +24,14 @@ var saturationShift = 20;
 var lightnessScatter = 50;
 var lightnessShift = 20;
 
+// ////////////////////// functions related to setting color /////////////////////// //
+
+// function for setting hue
+var randomHue = function(){
+  return Math.floor((Math.random() * 359 ));
+};
+
+// ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
 // function for drawing grid of lines - goes through horizontal lines and then through vertical lines
 // 1. loop through all places on display
@@ -48,11 +56,6 @@ gridVertical = function(){
     lines.strokeStyle = gridLineColor;
     lines.stroke();
   }
-};
-
-// function for setting hue
-var randomHue = function(){
-  return Math.floor((Math.random() * 359 ));
 };
 
 // function for drawing rectangle with random color
