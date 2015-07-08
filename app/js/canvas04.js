@@ -17,10 +17,10 @@ drawHexagon = function() {
   // 1. check if figure has more than 2 sides
   // 2. set value 'a' as a length of side in polygon
   // 3. save existing state
-  // 4. change position of canvas coordination
+  // 4. remap position of canvas (0,0)
   // 5. move drawing start point to side of polygon
   // 6. in loop draw number of sides
-  // 7. close path and restore canvas coordination state
+  // 7. close path and restore canvas original position
   function polygon( ctx, x, y, radius, sides ) {
     if ( sides < 3 ) return;
     var a = ( Math.PI * 2 )/sides;
