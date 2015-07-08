@@ -14,11 +14,12 @@ var tileChangeSpeed = 100;
 // shift controls level of values (between 0 - 100)
 // example: for light and muted colors use: 5 / 15 / 10 / 60
 // example: for high contrast shades use: 5 / 20 / 60 / 30
+// example: for neutral values use: 5 / 20 / 50 / 40
 var saturationScatter = 5;
-var saturationShift = 15;
+var saturationShift = 20;
 
-var lightnessScatter = 10;
-var lightnessShift = 60;
+var lightnessScatter = 5;
+var lightnessShift = 40;
 
 // properties related to functions gridHorizontal and gridVertical
 var gridLineColor = 'rgb(205, 205, 205)';
