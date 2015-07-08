@@ -2,6 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: #343434;
+  min-height: 1500px;
 }
 
 #myCanvas {
