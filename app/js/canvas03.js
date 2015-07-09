@@ -15,6 +15,7 @@ var tileChangeSpeed = 100;
 // example: for light and muted colors use: 5 / 15 / 10 / 60
 // example: for high contrast shades use: 5 / 20 / 60 / 30
 // example: for neutral values use: 5 / 20 / 50 / 40
+// example: for vivid colors use: 0 / 65 / 10 / 60
 var saturationScatter = 5;
 var saturationShift = 20;
 
