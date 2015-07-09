@@ -22,7 +22,7 @@ var lightnessScatter = 5;
 var lightnessShift = 40;
 
 // properties related to functions gridHorizontal and gridVertical
-var gridLineColor = 'rgb(205, 205, 205)';
+var gridLineColor = 'rgb(50, 50, 50)';
 var gridLineWidth = 1;
 
 // properties related to function incrementHue
