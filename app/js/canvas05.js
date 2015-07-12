@@ -9,7 +9,7 @@ var horizontalTileNumber = 10;
 var verticalTileNumber = 10;
 var tileChangeSpeed = 2000;
 
-var saturationScatter = 5;
+var saturationScatter = 0;
 var saturationShift = 20;
 
 var lightnessScatter = 5;
@@ -34,7 +34,8 @@ var randomHue = function(){
   return Math.floor((Math.random() * 359 ));
 };
 
-var hue = randomHue();
+var firstHue = randomHue();
+var secondHue = randomHue();
 
 // ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
@@ -86,7 +87,7 @@ drawTilePattern = function(){
       };
 
       // setting variable for color
-      firstArrayOfColors[x][y] = "hsl(" + hue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
+      firstArrayOfColors[x][y] = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
 
       // draw rectangle
       context.fillStyle = firstArrayOfColors[x][y];
@@ -104,3 +105,4 @@ drawTilePattern = function(){
 window.setInterval(drawTilePattern, tileChangeSpeed);
 //window.setInterval(gridHorizontal, tileChangeSpeed);
 //window.setInterval(gridVertical, tileChangeSpeed);
+window.setInterval(randomHue, tileChangeSpeed);
