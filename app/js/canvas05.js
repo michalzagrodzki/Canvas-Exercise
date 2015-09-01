@@ -7,7 +7,7 @@ var lines = canvas.getContext('2d');
 // properties related to function drawTilePattern
 var horizontalTileNumber = 4;
 var verticalTileNumber = 4;
-var tileChangeSpeed = 500;
+var tileChangeSpeed = 1000;
 
 var saturationScatter = 0;
 var saturationShift = 20;
@@ -138,7 +138,7 @@ drawTilePattern = function(){
   }
 
   // transition between first and second array
-   for(var x = 0; x < horizontalTileNumber; x++){
+  /* for(var x = 0; x < horizontalTileNumber; x++){
 
     for (var y = 0; y < verticalTileNumber; y++) {
 
@@ -152,7 +152,7 @@ drawTilePattern = function(){
 
     }
 
-  }
+  } */
   // move colors from secondArrayOfColors into firstArrayOfColors;
   firstArrayOfColors = secondArrayOfColors;
 
