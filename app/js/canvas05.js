@@ -41,6 +41,8 @@ function blendColors(h1,s1,l1,h2,s2,l2,balance) {
 
 var firstArrayOfColors = new Array(horizontalTileNumber);
 var secondArrayOfColors = new Array(horizontalTileNumber);
+var thirdArrayOfColors = new Array(horizontalTileNumber);
+var fourthArrayOfColors = new Array(horizontalTileNumber);
 
 // ////////////////////// functions related to setting color /////////////////////// //
 
@@ -85,7 +87,7 @@ drawTilePattern = function(){
   // clear canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  // loop populating firstArrayOfColors and drawing tiles
+  // loop populating firstArrayOfColors and drawing tiles for first color
   for(var x = 0; x < horizontalTileNumber; x++){
 
     firstArrayOfColors[x] = new Array(verticalTileNumber);
@@ -137,6 +139,40 @@ drawTilePattern = function(){
 
   }
 
+  // loop populating thirdArrayOfColors - difference between values in firstArrayOfColors and secondArrayOfColors
+  for(var x = 0; x < horizontalTileNumber; x++){
+
+    thirdArrayOfColors[x] = new Array(verticalTileNumber);
+
+    for (var y = 0; y < verticalTileNumber; y++) {
+
+      //thirdArrayOfColors[x][y] = [valueOne, valueTwo, valueThree];
+      // substracting hue values from firstArrayOfColors and secondArrayOfColors
+      if(firstArrayOfColors[x][y][0] > secondArrayOfColors[x][y][0]){
+        var valueOne = firstArrayOfColors[x][y][0] - secondArrayOfColors[x][y][0];
+      } else {
+        var valueOne = (secondArrayOfColors[x][y][0] - firstArrayOfColors[x][y][0]);
+      }
+
+      // substracting saturation values from firstArrayOfColors and secondArrayOfColors
+      if(firstArrayOfColors[x][y][1] > secondArrayOfColors[x][y][1]){
+        var valueTwo = firstArrayOfColors[x][y][1] - secondArrayOfColors[x][y][1];
+      } else {
+        var valueTwo = secondArrayOfColors[x][y][1] - firstArrayOfColors[x][y][1];
+      }
+
+      // substracting lightness values from firstArrayOfColors and secondArrayOfColors
+      if(firstArrayOfColors[x][y][2] > secondArrayOfColors[x][y][2]){
+        var valueThree = firstArrayOfColors[x][y][2] - secondArrayOfColors[x][y][2];
+      } else {
+        var valueThree = secondArrayOfColors[x][y][2] - firstArrayOfColors[x][y][2];
+      }
+
+      thirdArrayOfColors[x][y] = [valueOne, valueTwo, valueThree];
+    }
+
+  }
+
   // transition between first and second array
   /* for(var x = 0; x < horizontalTileNumber; x++){
 
@@ -154,7 +190,7 @@ drawTilePattern = function(){
 
   } */
   // move colors from secondArrayOfColors into firstArrayOfColors;
-  firstArrayOfColors = secondArrayOfColors;
+  //firstArrayOfColors = secondArrayOfColors;
 
 };
 
