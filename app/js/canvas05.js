@@ -103,10 +103,10 @@ drawTilePattern = function(){
       };
 
       // setting variable for color
-      firstArrayOfColors[x][y] = "hsl( " + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
+      firstArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
 
       // draw tile
-      context.fillStyle = firstArrayOfColors[x][y];
+      context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
       context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
 
     }
@@ -131,7 +131,7 @@ drawTilePattern = function(){
       };
 
       // setting variable for color
-      secondArrayOfColors[x][y] = "hsl( " + secondHue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
+      secondArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
 
     }
 
