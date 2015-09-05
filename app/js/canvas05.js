@@ -197,7 +197,7 @@ drawTilePattern = function(){
 
   var numberOfTransitions = tileChangeSpeed / 100;
 
-  for(var z = 0; z < numberOfTransitions; z++){
+  for(var z = 0; z <= numberOfTransitions; z++){
 
     for(var x = 0; x < (horizontalTileNumber); x++){
 
