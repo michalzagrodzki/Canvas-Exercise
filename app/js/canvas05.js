@@ -81,6 +81,38 @@ gridVertical = function(){
   }
 };
 
+
+drawInitialTilePattern = function(){
+
+  // loop populating firstArrayOfColors and drawing tiles for first color
+  for(var x = 0; x < horizontalTileNumber; x++){
+
+    firstArrayOfColors[x] = new Array(verticalTileNumber);
+
+    for (var y = 0; y < verticalTileNumber; y++) {
+
+      // function for setting saturation
+      randomSaturation = function () {
+        return Math.floor((Math.random() * saturationScatter) + saturationShift);
+      };
+
+      // function for setting lightness
+      randomLight = function () {
+        return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
+      };
+
+      // setting variable for color
+      firstArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
+
+      // draw tile
+      context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
+      context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
+
+    }
+
+  }
+};
+
 // function for drawing tiles  with random color
 
 drawTilePattern = function(){
@@ -195,7 +227,9 @@ drawTilePattern = function(){
 };
 
 // executing functions
+
 window.setInterval(randomHue, tileChangeSpeed);
+window.drawInitialTilePattern();
 window.setInterval(drawTilePattern, tileChangeSpeed);
 
 
