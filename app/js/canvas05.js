@@ -71,11 +71,11 @@ gridVertical = function(){
 drawInitialTilePattern = function(){
 
   // loop populating firstArrayOfColors and drawing tiles for first color
-  for(var x = 0; x < (horizontalTileNumber); x++){
+  for(var x = 0; x < horizontalTileNumber; x++){
 
     firstArrayOfColors[x] = new Array(verticalTileNumber);
 
-    for (var y = 0; y < (verticalTileNumber); y++) {
+    for (var y = 0; y < verticalTileNumber; y++) {
 
       // function for setting saturation
       var randomSaturation = function () {
@@ -106,11 +106,11 @@ drawTilePattern = function(){
 
 
   // loop populating firstArrayOfColors and drawing tiles for first color
-  for(var x = 0; x < (horizontalTileNumber); x++){
+  for(var x = 0; x < horizontalTileNumber; x++){
 
     firstArrayOfColors[x] = new Array(verticalTileNumber);
 
-    for (var y = 0; y < (verticalTileNumber); y++) {
+    for (var y = 0; y < verticalTileNumber; y++) {
 
       // function for setting saturation
       function randomSaturation() {
@@ -134,11 +134,11 @@ drawTilePattern = function(){
   }
 
   // loop populating secondArrayOfColors
-  for(var x = 0; x < (horizontalTileNumber); x++){
+  for(var x = 0; x < horizontalTileNumber; x++){
 
     secondArrayOfColors[x] = new Array(verticalTileNumber);
 
-    for (var y = 0; y < (verticalTileNumber); y++) {
+    for (var y = 0; y < verticalTileNumber; y++) {
 
       // function for setting saturation
       function randomSaturation() {
@@ -162,7 +162,7 @@ drawTilePattern = function(){
 
     thirdArrayOfColors[x] = new Array(verticalTileNumber);
 
-    for (var y = 0; y < (verticalTileNumber); y++) {
+    for (var y = 0; y < verticalTileNumber; y++) {
 
       //thirdArrayOfColors[x][y] = [valueOne, valueTwo, valueThree];
       // substracting hue values from firstArrayOfColors and secondArrayOfColors
@@ -199,11 +199,11 @@ drawTilePattern = function(){
 
   for(var z = 0; z <= numberOfTransitions; z++){
 
-    for(var x = 0; x < (horizontalTileNumber); x++){
+    for(var x = 0; x < horizontalTileNumber; x++){
 
       fourthArrayOfColors[x] = new Array(verticalTileNumber);
 
-      for (var y = 0; y < (verticalTileNumber); y++) {
+      for (var y = 0; y < verticalTileNumber; y++) {
 
         var incrementHue = firstArrayOfColors[x][y][0] + ( thirdArrayOfColors[x][y][0] / numberOfTransitions );
 
@@ -212,7 +212,7 @@ drawTilePattern = function(){
         var incrementLightness = firstArrayOfColors[x][y][2] + ( thirdArrayOfColors[x][y][2] / numberOfTransitions );
 
         // setting variable for color
-        fourthArrayOfColors[x][y] = [ incrementHue, incrementSaturation, incrementLightness ];
+        fourthArrayOfColors[x][y] = [ Math.round(incrementHue), Math.round(incrementSaturation), Math.round(incrementLightness) ];
 
         // draw tile
         context.fillStyle = "hsl( " +  fourthArrayOfColors[x][y][0] + ", " + fourthArrayOfColors[x][y][1] + "%, " + fourthArrayOfColors[x][y][2] + "% )" ;
