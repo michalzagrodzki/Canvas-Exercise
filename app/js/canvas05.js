@@ -23,20 +23,6 @@ var balanceFade = 0;
 var gridLineColor = 'rgb(50, 50, 50)';
 var gridLineWidth = 1;
 
-// ////////////// functions related to blending colors /////////////////// //
-
-function blendColors(h1,s1,l1,h2,s2,l2,balance) {
-
-  var bal = Math.min(Math.max(balance,0),1);
-  var nbal = 1-bal;
-  return {
-    h : Math.floor(h1*nbal + h2*bal),
-    s : Math.floor(s1*nbal + s2*bal),
-    l : Math.floor(l1*nbal + l2*bal)
-  };
-
-}
-
 // ////////////// functions related to setting arrays for colors /////////////////// //
 
 var firstArrayOfColors = new Array(horizontalTileNumber);
