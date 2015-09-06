@@ -124,7 +124,7 @@ drawTilePattern = function(){
 
 
   // loop populating firstArrayOfColors and drawing tiles for first color
-  /* for(var x = 0; x < horizontalTileNumber; x++){
+   for(var x = 0; x < horizontalTileNumber; x++){
 
     firstArrayOfColors[x] = new Array(verticalTileNumber);
 
@@ -144,8 +144,8 @@ drawTilePattern = function(){
       firstArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
 
       // draw tile
-      //context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
-      //context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
+      context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
+      context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
 
     }
 
@@ -161,19 +161,19 @@ drawTilePattern = function(){
       // function for setting saturation
       function randomSaturation() {
         return Math.floor((Math.random() * saturationScatter) + saturationShift);
-      };
+      }
 
       // function for setting lightness
       function randomLight() {
         return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
-      };
+      }
 
       // setting variable for color
       secondArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
 
     }
 
-  } */
+  }
 
   // loop populating thirdArrayOfColors - difference between values in firstArrayOfColors and secondArrayOfColors
   for(var x = 0; x < (horizontalTileNumber); x++){
@@ -195,9 +195,9 @@ drawTilePattern = function(){
   // start loop for number of iterations between two states
   // then start loop which go in single iteration through all tiles and change state
 
-  var numberOfTransitions = tileChangeSpeed / 100;
+    var numberOfTransitions = tileChangeSpeed / 100;
 
-  for(var z = 0; z <= numberOfTransitions; z++){
+  for(var v = 0; v <= numberOfTransitions; v++){
 
     for(var x = 0; x < (horizontalTileNumber); x++){
 
@@ -211,8 +211,13 @@ drawTilePattern = function(){
 
         var incrementLightness = firstArrayOfColors[x][y][2] + ( thirdArrayOfColors[x][y][2] / numberOfTransitions );
 
+        firstArrayOfColors[x][y] = [ Math.round(incrementHue), Math.round(incrementSaturation), Math.round(incrementLightness) ];
+
         // setting variable for color
         fourthArrayOfColors[x][y] = [ Math.round(incrementHue), Math.round(incrementSaturation), Math.round(incrementLightness) ];
+
+        // clear tile
+        context.clearRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
 
         // draw tile
         context.fillStyle = "hsl( " +  fourthArrayOfColors[x][y][0] + ", " + fourthArrayOfColors[x][y][1] + "%, " + fourthArrayOfColors[x][y][2] + "% )" ;
@@ -221,11 +226,13 @@ drawTilePattern = function(){
       }
 
     }
-
   }
 
+
+
+
   // move colors from secondArrayOfColors into firstArrayOfColors;
-  firstArrayOfColors = secondArrayOfColors;
+ // firstArrayOfColors = secondArrayOfColors;
 
 };
 
