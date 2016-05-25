@@ -1,8 +1,7 @@
 logs/*
 !.gitkeep
 node_modules/
-tmp
+.tmp
 .idea
 .DS_Store
-angular-phonecat-snapshots
 bower_components/
