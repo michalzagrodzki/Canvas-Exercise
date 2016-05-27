@@ -47,8 +47,7 @@ const testLintOptions = {
   }
 };
 
-gulp.task('lint', lint('static/scripts/**/*.js'));
-gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
+gulp.task('lint', lint('app/js/**/*.js'));
 
 gulp.task('html', ['styles', 'scripts'], () => {
   return gulp.src('app/*.html')
@@ -98,16 +97,6 @@ gulp.watch('app/css/**/*.scss', ['styles']);
 gulp.watch('app/js/**/*.js', ['scripts']);
 gulp.watch('app/fonts/**/*', ['fonts']);
 gulp.watch('bower.json', ['wiredep', 'fonts']);
-});
-
-gulp.task('serve:dist', () => {
-  browserSync({
-    notify: false,
-    port: 9090,
-    server: {
-      baseDir: ['dist']
-    }
-  });
 });
 
 // inject bower components
