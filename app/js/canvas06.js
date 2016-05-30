@@ -7,11 +7,11 @@ var context = canvas.getContext('2d');
 var tileChangeSpeed = 1000;
 var stripeNumber = 5;
 
-var saturationScatter = 75;
-var saturationShift = 20;
+var saturationScatter = 10;
+var saturationShift = 50;
 
-var lightnessScatter = 45;
-var lightnessShift = 20;
+var lightnessScatter = 15;
+var lightnessShift = 50;
 
 // ////////////////////// functions related to setting color /////////////////////// //
 
