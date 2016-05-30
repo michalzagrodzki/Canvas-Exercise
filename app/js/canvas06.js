@@ -1,30 +1,17 @@
 // setting canvas element
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var lines = canvas.getContext('2d');
 
 // properties of visible elements
 // properties related to function drawTilePattern
-var horizontalTileNumber = 2;
-var verticalTileNumber = 2;
 var tileChangeSpeed = 1000;
+var stripeNumber = 5;
 
 var saturationScatter = 75;
 var saturationShift = 20;
 
-var lightnessScatter = 75;
-var lightnessShift = 40;
-
-// properties of transition between colors
-var balanceFade = 0;
-
-
-// ////////////// functions related to setting arrays for colors /////////////////// //
-
-var firstArrayOfColors = new Array(horizontalTileNumber);
-var secondArrayOfColors = new Array(horizontalTileNumber);
-var thirdArrayOfColors = new Array(horizontalTileNumber);
-var fourthArrayOfColors = new Array(horizontalTileNumber);
+var lightnessScatter = 45;
+var lightnessShift = 20;
 
 // ////////////////////// functions related to setting color /////////////////////// //
 
@@ -34,175 +21,34 @@ var randomHue = function(){
 };
 
 var firstHue = randomHue();
-var secondHue = randomHue();
 
 // ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
-drawInitialTilePattern = function(){
+drawInitialStripes = function(){
 
-  // loop populating firstArrayOfColors and drawing tiles for first color
-  for(var x = 0; x < horizontalTileNumber; x++){
+  for(var x = 0; x < stripeNumber; x++){
 
-    firstArrayOfColors[x] = new Array(verticalTileNumber);
+    // function for setting saturation
+    var randomSaturation = function () {
+      return Math.floor((Math.random() * saturationScatter) + saturationShift);
+    };
 
-    for (var y = 0; y < verticalTileNumber; y++) {
+    // function for setting lightness
+    var randomLight = function () {
+      return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
+    };
 
-      // function for setting saturation
-      var randomSaturation = function () {
-        return Math.floor((Math.random() * saturationScatter) + saturationShift);
-      };
-
-      // function for setting lightness
-      var randomLight = function () {
-        return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
-      };
-
-      // setting variable for color
-      firstArrayOfColors[x][y] = [ firstHue, randomSaturation, randomLight ];
-
-      // draw tile
-      //context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
-      //context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
-
-    }
-
+    //draw stripe
+    console.log("hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )");
+    context.fillStyle = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
+    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber));
   }
-};
-
-// function for drawing tiles  with random color
-
-drawTilePattern = function(){
-  // clear canvas
-
-
-  // loop populating firstArrayOfColors and drawing tiles for first color
-  for(var x = 0; x < horizontalTileNumber; x++){
-
-    firstArrayOfColors[x] = new Array(verticalTileNumber);
-
-    for (var y = 0; y < verticalTileNumber; y++) {
-
-      // function for setting saturation
-      function randomSaturation() {
-        return Math.floor((Math.random() * saturationScatter) + saturationShift);
-      }
-
-      // function for setting lightness
-      function randomLight() {
-        return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
-      }
-
-      // setting variable for color
-      firstArrayOfColors[x][y] = [ firstHue, randomSaturation(), randomLight() ];
-
-      // draw tile
-      //context.fillStyle = "hsl( " + firstArrayOfColors[x][y][0] + ", " + firstArrayOfColors[x][y][1] + "%, " + firstArrayOfColors[x][y][2] + "% )" ;
-      //context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
-
-    }
-
-  }
-
-  // loop populating secondArrayOfColors
-  for(var x = 0; x < horizontalTileNumber; x++){
-
-    secondArrayOfColors[x] = new Array(verticalTileNumber);
-
-    for (var y = 0; y < verticalTileNumber; y++) {
-
-      // function for setting saturation
-      function randomSaturation() {
-        return Math.floor((Math.random() * saturationScatter) + saturationShift);
-      };
-
-      // function for setting lightness
-      function randomLight() {
-        return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
-      };
-
-      // setting variable for color
-      secondArrayOfColors[x][y] = [ secondHue, randomSaturation(), randomLight() ];
-
-    }
-
-  }
-
-  // loop populating thirdArrayOfColors - difference between values in firstArrayOfColors and secondArrayOfColors
-  for(var x = 0; x < (horizontalTileNumber); x++){
-
-    thirdArrayOfColors[x] = new Array(verticalTileNumber);
-
-    for (var y = 0; y < verticalTileNumber; y++) {
-
-      //thirdArrayOfColors[x][y] = [valueOne, valueTwo, valueThree];
-      // substracting hue values from firstArrayOfColors and secondArrayOfColors
-      if (firstArrayOfColors[x][y][0] > secondArrayOfColors[x][y][0]) {
-        var valueOne = firstArrayOfColors[x][y][0] - secondArrayOfColors[x][y][0];
-      } else {
-        var valueOne = (secondArrayOfColors[x][y][0] - firstArrayOfColors[x][y][0]);
-      }
-
-      // substracting saturation values from firstArrayOfColors and secondArrayOfColors
-      if (firstArrayOfColors[x][y][1] > secondArrayOfColors[x][y][1]) {
-        var valueTwo = firstArrayOfColors[x][y][1] - secondArrayOfColors[x][y][1];
-      } else {
-        var valueTwo = secondArrayOfColors[x][y][1] - firstArrayOfColors[x][y][1];
-      }
-
-      // substracting lightness values from firstArrayOfColors and secondArrayOfColors
-      if (firstArrayOfColors[x][y][2] > secondArrayOfColors[x][y][2]) {
-        var valueThree = firstArrayOfColors[x][y][2] - secondArrayOfColors[x][y][2];
-      } else {
-        var valueThree = secondArrayOfColors[x][y][2] - firstArrayOfColors[x][y][2];
-      }
-
-      thirdArrayOfColors[x][y] = [valueOne, valueTwo, valueThree];
-    }
-
-  }
-
-  // transition between first and second array
-  // start loop for number of iterations between two states
-  // then start loop which go in single iteration through all tiles and change state
-
-  var numberOfTransitions = tileChangeSpeed / 100;
-
-  for(var z = 0; z <= numberOfTransitions; z++){
-
-    for(var x = 0; x < horizontalTileNumber; x++){
-
-      fourthArrayOfColors[x] = new Array(verticalTileNumber);
-
-      for (var y = 0; y < verticalTileNumber; y++) {
-
-        var incrementHue = firstArrayOfColors[x][y][0] + ( thirdArrayOfColors[x][y][0] / numberOfTransitions );
-
-        var incrementSaturation = firstArrayOfColors[x][y][1] + ( thirdArrayOfColors[x][y][1] / numberOfTransitions );
-
-        var incrementLightness = firstArrayOfColors[x][y][2] + ( thirdArrayOfColors[x][y][2] / numberOfTransitions );
-
-        // setting variable for color
-        fourthArrayOfColors[x][y] = [ Math.round(incrementHue), Math.round(incrementSaturation), Math.round(incrementLightness) ];
-
-        // draw tile
-        context.fillStyle = "hsl( " +  fourthArrayOfColors[x][y][0] + ", " + fourthArrayOfColors[x][y][1] + "%, " + fourthArrayOfColors[x][y][2] + "% )" ;
-        context.fillRect(( x * (canvas.width / horizontalTileNumber) ), ( y * (canvas.height / verticalTileNumber) ), (canvas.width / horizontalTileNumber), (canvas.height / verticalTileNumber));
-        console.log('hello' + numberOfTransitions);
-      }
-
-    }
-
-  }
-
-  // move colors from secondArrayOfColors into firstArrayOfColors;
-  firstArrayOfColors = secondArrayOfColors;
-
+  console.log("--------");
 };
 
 // executing functions
 
 window.setInterval(randomHue, tileChangeSpeed);
-window.drawInitialTilePattern();
-window.setInterval(drawTilePattern, tileChangeSpeed);
+window.setInterval(drawInitialStripes, tileChangeSpeed);
 
 
