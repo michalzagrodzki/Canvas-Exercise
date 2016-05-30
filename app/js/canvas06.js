@@ -7,7 +7,7 @@ var context = canvas.getContext('2d');
 var tileChangeSpeed = 1000;
 var stripeNumber = 5;
 
-var saturationScatter = 10;
+var saturationScatter = 30;
 var saturationShift = 50;
 
 var lightnessScatter = 15;
@@ -21,10 +21,13 @@ var randomHue = function(){
 };
 
 var firstHue = randomHue();
+var secondHue = randomHue();
 
 // ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
 drawInitialStripes = function(){
+  console.log("first Hue: " + firstHue);
+  console.log("second Hue: " + secondHue);
 
   for(var x = 0; x < stripeNumber; x++){
 
