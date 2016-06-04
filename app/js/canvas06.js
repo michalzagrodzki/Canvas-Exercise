@@ -42,8 +42,8 @@ drawInitialStripes = function(){
     };
 
     //draw stripe
-    console.log("hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )");
-    context.fillStyle = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "% )";
+    console.log("hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)");
+    context.fillStyle = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)";
     context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber));
   }
   console.log("--------");
