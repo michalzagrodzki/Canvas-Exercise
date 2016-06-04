@@ -41,8 +41,9 @@ drawStripes = function(){
   };
 
   var colorArray = [];
+  var colorHighlightArray = colorArray;
 
-  // set color and push it to array
+  // loop to set color and push it to array
   for(var c = 0; c < stripeNumber; c++){
     var color = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)";
     colorArray.push(color);
@@ -55,12 +56,24 @@ drawStripes = function(){
 
   console.log("array of colors - sorted");
   console.log(colorArray);
+  console.log(colorArray[0]);
+  console.log("---//---");
+  console.log(colorHighlightArray);
 
+  // loop to set highlight color based on colorArray and push it to colorHighlightArray
+  for(var h = 0; h < stripeNumber; h++){
+    var colorBase = colorArray[h];
+    var colorHighlightValue = colorBase.substr(13,3);
+    console.log();
+    colorHighlightArray.push(colorHighlight);
+  }
+
+  // loop drawing bands with colors
   for(var x = 0; x < stripeNumber; x++){
 
     //draw stripe
     context.fillStyle = colorArray[x];
-    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber));
+    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber - 10));
   }
   console.log("--------");
 };
