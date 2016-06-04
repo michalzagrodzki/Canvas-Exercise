@@ -4,7 +4,7 @@ var context = canvas.getContext('2d');
 
 // properties of visible elements
 // properties related to function drawTilePattern
-var tileChangeSpeed = 1000;
+var tileChangeSpeed = 10000;
 var stripeNumber = 5;
 
 var saturationScatter = 30;
@@ -25,33 +25,49 @@ var secondHue = randomHue();
 
 // ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
-drawInitialStripes = function(){
-  console.log("first Hue: " + firstHue);
-  console.log("second Hue: " + secondHue);
+drawStripes = function(){
+
+  //console.log("first Hue: " + firstHue);
+  //console.log("second Hue: " + secondHue);
+
+  // function for setting saturation
+  var randomSaturation = function () {
+    return Math.floor((Math.random() * saturationScatter) + saturationShift);
+  };
+
+  // function for setting lightness
+  var randomLight = function () {
+    return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
+  };
+
+  var colorArray = [];
+
+  // set color and push it to array
+  for(var c = 0; c < stripeNumber; c++){
+    var color = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)";
+    colorArray.push(color);
+  }
+
+  console.log("array of colors - initial");
+  console.log(colorArray);
+
+  colorArray.sort();
+
+  console.log("array of colors - sorted");
+  console.log(colorArray);
 
   for(var x = 0; x < stripeNumber; x++){
 
-    // function for setting saturation
-    var randomSaturation = function () {
-      return Math.floor((Math.random() * saturationScatter) + saturationShift);
-    };
-
-    // function for setting lightness
-    var randomLight = function () {
-      return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
-    };
-
     //draw stripe
-    console.log("hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)");
-    context.fillStyle = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)";
+    context.fillStyle = colorArray[x];
     context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber));
   }
   console.log("--------");
 };
 
 // executing functions
-
+drawStripes();
 window.setInterval(randomHue, tileChangeSpeed);
-window.setInterval(drawInitialStripes, tileChangeSpeed);
+window.setInterval(drawStripes, tileChangeSpeed);
 
 
