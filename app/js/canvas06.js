@@ -1,10 +1,11 @@
 // setting canvas element
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
+var context2 = canvas.getContext('2d');
 
 // properties of visible elements
 // properties related to function drawTilePattern
-var tileChangeSpeed = 10000;
+var tileChangeSpeed = 1000;
 var stripeNumber = 5;
 
 var saturationScatter = 30;
@@ -43,12 +44,25 @@ drawStripes = function(){
   var colorArray = [];
   var colorHighlightArray = colorArray;
 
+
   // loop to set color and push it to array
   for(var c = 0; c < stripeNumber; c++){
     var color = "hsl(" + firstHue + ", " + randomSaturation() + "%, " + randomLight() + "%)";
     colorArray.push(color);
   }
 
+  /*
+  // loop to set color and push it to array
+  for(var c = 0; c < stripeNumber; c++){
+    var color = {
+      'hue': firstHue,
+      'sat': randomSaturation(),
+      'light': randomLight()
+    };
+    colorArray.push(color);
+  }
+*/
+  /*
   console.log("array of colors - initial");
   console.log(colorArray);
 
@@ -56,12 +70,12 @@ drawStripes = function(){
 
   console.log("array of colors - sorted");
   console.log(colorArray);
-  console.log("array of colors - single value: " + colorArray[0]);
+  console.log("array of colors - single value: " + colorArray);
 
   console.log("---//---");
   console.log("array of highlighted colors - before changes");
   console.log(colorHighlightArray);
-
+*/
   // loop to set highlight color based on colorArray and push it to colorHighlightArray
   for(var h = 0; h < stripeNumber; h++){
     var colorBase = colorArray[h];
@@ -70,37 +84,44 @@ drawStripes = function(){
     // change value to number
     colorHighlightValue = parseInt(colorHighlightValue);
     // add 10 to value of highlight
-    colorHighlightValue = colorHighlightValue + 20;
+    colorHighlightValue = colorHighlightValue + 10;
+
+    if(colorHighlightValue > 100){
+      colorHighlightValue = 100;
+    }
     // set new value of highlight into array value
     // review this area
-    colorHighlightValue = colorBase.substr(0,14) + colorHighlightValue + "%)";
+    colorHighlightValue = colorBase.substr(0,13) + colorHighlightValue + "%)";
     // replace old value with new value in highlight array
     colorHighlightArray[h] = colorHighlightValue;
   }
 
-  console.log("array of highlighted colors - after changes");
-  console.log(colorHighlightArray);
+  //console.log("array of highlighted colors - after changes");
+  //console.log(colorHighlightArray);
+
 
   // loop drawing bands with colors
  for(var x = 0; x < stripeNumber; x++){
 
     //draw stripe
     context.fillStyle = colorArray[x];
-    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber) - 10);
+    context.fillRect(0 , ( x * ((canvas.height / stripeNumber)) ), canvas.width, (canvas.height / stripeNumber));
 
   }
-
+/*
+// loop drawing highlight bands
   for(var y = 0; y < stripeNumber; y++){
 
-    context.fillStyle = colorHighlightArray[y];
-    context.fillRect(0 , ( y * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber)-10);
+    context2.fillStyle = colorHighlightArray[y];
+    context2.fillRect(0 , ( y * (canvas.height / stripeNumber) ), canvas.width, ( (canvas.height / stripeNumber) - canvas.height*0.18) );
 
   }
+*/
   console.log("--------");
 };
 
 // executing functions
-drawStripes();
+
 window.setInterval(randomHue, tileChangeSpeed);
 window.setInterval(drawStripes, tileChangeSpeed);
 
