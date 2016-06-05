@@ -72,6 +72,7 @@ drawStripes = function(){
     // add 10 to value of highlight
     colorHighlightValue = colorHighlightValue + 20;
     // set new value of highlight into array value
+    // review this area
     colorHighlightValue = colorBase.substr(0,14) + colorHighlightValue + "%)";
     // replace old value with new value in highlight array
     colorHighlightArray[h] = colorHighlightValue;
@@ -81,7 +82,7 @@ drawStripes = function(){
   console.log(colorHighlightArray);
 
   // loop drawing bands with colors
-  for(var x = 0; x < stripeNumber; x++){
+ for(var x = 0; x < stripeNumber; x++){
 
     //draw stripe
     context.fillStyle = colorArray[x];
@@ -92,7 +93,7 @@ drawStripes = function(){
   for(var y = 0; y < stripeNumber; y++){
 
     context.fillStyle = colorHighlightArray[y];
-    context.fillRect(0 , 10, canvas.width, (canvas.height / stripeNumber));
+    context.fillRect(0 , ( y * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber)-10);
 
   }
   console.log("--------");
