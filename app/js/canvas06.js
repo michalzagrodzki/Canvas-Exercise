@@ -5,7 +5,7 @@ var context2 = canvas.getContext('2d');
 
 // properties of visible elements
 // properties related to function drawTilePattern
-var tileChangeSpeed = 1000;
+var tileChangeSpeed = 10000;
 var stripeNumber = 5;
 
 var saturationScatter = 30;
@@ -38,7 +38,15 @@ drawStripes = function(){
 
   // function for setting lightness
   var randomLight = function () {
-    return Math.floor((Math.random() * lightnessScatter) + lightnessShift);
+    var initialValue = Math.floor((Math.random() * lightnessScatter) + lightnessShift);
+
+    if(initialValue > 100){
+      initialValue = 100;
+      return initialValue;
+    } else {
+      return initialValue;
+    }
+    
   };
 
   var colorArray = [];
@@ -62,20 +70,15 @@ drawStripes = function(){
     colorArray.push(color);
   }
 */
-  /*
-  console.log("array of colors - initial");
-  console.log(colorArray);
 
   colorArray.sort();
 
   console.log("array of colors - sorted");
   console.log(colorArray);
-  console.log("array of colors - single value: " + colorArray);
-
   console.log("---//---");
   console.log("array of highlighted colors - before changes");
   console.log(colorHighlightArray);
-*/
+
   // loop to set highlight color based on colorArray and push it to colorHighlightArray
   for(var h = 0; h < stripeNumber; h++){
     var colorBase = colorArray[h];
@@ -96,8 +99,8 @@ drawStripes = function(){
     colorHighlightArray[h] = colorHighlightValue;
   }
 
-  //console.log("array of highlighted colors - after changes");
-  //console.log(colorHighlightArray);
+  console.log("array of highlighted colors - after changes");
+  console.log(colorHighlightArray);
 
 
   // loop drawing bands with colors
@@ -121,7 +124,7 @@ drawStripes = function(){
 };
 
 // executing functions
-
+drawStripes();
 window.setInterval(randomHue, tileChangeSpeed);
 window.setInterval(drawStripes, tileChangeSpeed);
 
