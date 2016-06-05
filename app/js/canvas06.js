@@ -56,24 +56,44 @@ drawStripes = function(){
 
   console.log("array of colors - sorted");
   console.log(colorArray);
-  console.log(colorArray[0]);
+  console.log("array of colors - single value: " + colorArray[0]);
+
   console.log("---//---");
+  console.log("array of highlighted colors - before changes");
   console.log(colorHighlightArray);
 
   // loop to set highlight color based on colorArray and push it to colorHighlightArray
   for(var h = 0; h < stripeNumber; h++){
     var colorBase = colorArray[h];
+    // extract value of brightness from color array
     var colorHighlightValue = colorBase.substr(13,3);
-    console.log();
-    colorHighlightArray.push(colorHighlight);
+    // change value to number
+    colorHighlightValue = parseInt(colorHighlightValue);
+    // add 10 to value of highlight
+    colorHighlightValue = colorHighlightValue + 20;
+    // set new value of highlight into array value
+    colorHighlightValue = colorBase.substr(0,14) + colorHighlightValue + "%)";
+    // replace old value with new value in highlight array
+    colorHighlightArray[h] = colorHighlightValue;
   }
+
+  console.log("array of highlighted colors - after changes");
+  console.log(colorHighlightArray);
 
   // loop drawing bands with colors
   for(var x = 0; x < stripeNumber; x++){
 
     //draw stripe
     context.fillStyle = colorArray[x];
-    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber - 10));
+    context.fillRect(0 , ( x * (canvas.height / stripeNumber) ), canvas.width, (canvas.height / stripeNumber) - 10);
+
+  }
+
+  for(var y = 0; y < stripeNumber; y++){
+
+    context.fillStyle = colorHighlightArray[y];
+    context.fillRect(0 , 10, canvas.width, (canvas.height / stripeNumber));
+
   }
   console.log("--------");
 };
