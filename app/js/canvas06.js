@@ -28,9 +28,6 @@ var secondHue = randomHue();
 
 drawStripes = function(){
 
-  //console.log("first Hue: " + firstHue);
-  //console.log("second Hue: " + secondHue);
-
   // function for setting saturation
   var randomSaturation = function () {
     return Math.floor((Math.random() * saturationScatter) + saturationShift);
@@ -46,7 +43,7 @@ drawStripes = function(){
     } else {
       return initialValue;
     }
-    
+
   };
 
   var colorArray = [];
