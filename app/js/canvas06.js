@@ -28,21 +28,31 @@ var secondHue = randomHue();
 
 drawStripes = function(){
 
+  var validateValue = function(value){
+    if(value > 100){
+      value = 100;
+      return value;
+    } else {
+      return value;
+    }
+  };
+
   // function for setting saturation
   var randomSaturation = function () {
-    return Math.floor((Math.random() * saturationScatter) + saturationShift);
+    var initialValue = Math.floor((Math.random() * saturationScatter) + saturationShift);
+
+    validateValue(initialValue);
+
+    return initialValue;
   };
 
   // function for setting lightness
   var randomLight = function () {
     var initialValue = Math.floor((Math.random() * lightnessScatter) + lightnessShift);
 
-    if(initialValue > 100){
-      initialValue = 100;
-      return initialValue;
-    } else {
-      return initialValue;
-    }
+    validateValue(initialValue);
+
+    return initialValue;
 
   };
 
