@@ -5,7 +5,7 @@ var context2 = canvas.getContext('2d');
 
 // properties of visible elements
 // properties related to function drawTilePattern
-var tileChangeSpeed = 10000;
+var tileChangeSpeed = 1000;
 var stripeNumber = 5;
 
 var saturationScatter = 30;
@@ -26,7 +26,9 @@ var secondHue = randomHue();
 
 // ////////////////////// functions related to drawing elements on screen /////////////////////// //
 
-drawStripes = function(){
+drawStripes = function(inputHeight){
+
+  var inputHeight = inputHeight || 0;
 
   var validateValue = function(value){
     if(value > 100){
@@ -79,13 +81,13 @@ drawStripes = function(){
 */
 
   colorArray.sort();
-
+/*
   console.log("array of colors - sorted");
   console.log(colorArray);
   console.log("---//---");
   console.log("array of highlighted colors - before changes");
   console.log(colorHighlightArray);
-
+*/
   // loop to set highlight color based on colorArray and push it to colorHighlightArray
   for(var h = 0; h < stripeNumber; h++){
     var colorBase = colorArray[h];
@@ -106,16 +108,17 @@ drawStripes = function(){
     colorHighlightArray[h] = colorHighlightValue;
   }
 
+  /*
   console.log("array of highlighted colors - after changes");
   console.log(colorHighlightArray);
-
+*/
 
   // loop drawing bands with colors
  for(var x = 0; x < stripeNumber; x++){
 
     //draw stripe
     context.fillStyle = colorArray[x];
-    context.fillRect(0 , ( x * ((canvas.height / stripeNumber)) ), canvas.width, (canvas.height / stripeNumber));
+    context.fillRect(0 , ( x * ((canvas.height / stripeNumber)) ), canvas.width, (canvas.height / stripeNumber) - inputHeight );
 
   }
 /*
@@ -127,12 +130,13 @@ drawStripes = function(){
 
   }
 */
-  console.log("--------");
+  // console.log("--------");
 };
 
 // executing functions
 drawStripes();
 window.setInterval(randomHue, tileChangeSpeed);
 window.setInterval(drawStripes, tileChangeSpeed);
+//window.setInterval(drawStripes, tileChangeSpeed);
 
 
